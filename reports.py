@@ -38,9 +38,11 @@ def get_line_number_by_title(filename, title):
     with open(filename) as f:
         games = f.readlines()
         titles = [title.split('\t')[0] for title in games]
-        if title in titles:
+        try:
             line_number_of_title = titles.index(title) + 1
             return line_number_of_title
+        except ValueError:
+            return ('There is no game from the given year')
 
 
 def sort_abc(filename):
