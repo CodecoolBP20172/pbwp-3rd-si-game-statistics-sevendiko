@@ -57,4 +57,3 @@ def get_genres(filename):
         games = f.readlines()
         genres = {genres.split('\t')[3] for genres in games}
         return sorted(genres, key=str.swapcase)
-
