@@ -42,7 +42,7 @@ def get_line_number_by_title(filename, title):
             line_number_of_title = titles.index(title) + 1
             return line_number_of_title
         except ValueError:
-            return ('There is no game from the given year')
+            return ('There is no game with the given title.')
 
 
 def sort_abc(filename):
