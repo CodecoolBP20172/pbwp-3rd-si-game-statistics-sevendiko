@@ -21,7 +21,7 @@ def get_latest(filename):
         latest = max([year.split('\t')[2] for year in games])
         for item in games:
             if latest in item:
-                game = str(item.split('\t')[0])
+                game = item.split('\t')[0]
         return game
 
 
@@ -56,4 +56,5 @@ def get_genres(filename):
     with open(filename) as f:
         games = f.readlines()
         genres = {genres.split('\t')[3] for genres in games}
-        return sorted(genres, key=str.swapcase)
+        genres = sorted(genres, key=str.swapcase)
+        return genres
