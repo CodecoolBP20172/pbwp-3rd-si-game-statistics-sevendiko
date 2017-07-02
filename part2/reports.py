@@ -1,20 +1,65 @@
-def most_played(filename):
+import math as m
+
+
+def get_most_played(filename):
     with open(filename) as f:
         games = f.readlines()
         sell = [sell.split('\t')[1] for sell in games]
+        sell = map(float, sell)
         title = [title.split('\t')[0] for title in games]
         sellbytitle = dict(zip(title, sell))
         max_key = max(sellbytitle, key=lambda k: sellbytitle[k])
-        print(max_key)
-        
+        return max_key
 
 
-most_played('game_stat.txt')
+def sum_sold(filename):
+    with open(filename) as f:
+        games = f.readlines()
+        sell = [sell.split('\t')[1] for sell in games]
+        sell = sum(map(float, sell))
+        return sell
 
-"""
-maxsell = str(int(max(map(float, sell))))
-        for game in games:    
-            if maxsell in game:
-                game = str(games.split('\t')[0])
-        print(game)
-"""
+
+def get_selling_avg(filename):
+    with open(filename) as fi:
+        countgames = sum(1 for _ in fi)
+    with open(filename) as f:
+        games = f.readlines()
+        sell = [sell.split('\t')[1] for sell in games]
+        sell = sum(map(float, sell))
+        avgsell = sell / countgames
+        return avgsell
+
+
+def count_longest_title(filename):
+    with open(filename) as f:
+        games = f.readlines()
+        titles = [title.split('\t')[0] for title in games]
+        titles = max(titles, key=len)
+        return len(titles)
+
+
+def get_date_avg(filename):
+    with open(filename) as fi:
+        countgames = sum(1 for _ in fi)
+    with open(filename) as f:
+        games = f.readlines()
+        dates = [date.split('\t')[2] for date in games]
+        dates = sum(map(int, dates))
+        avgdate = dates / countgames
+        return m.ceil(avgdate)
+
+
+def get_game(filename, title):
+    properties = []
+    with open(filename) as f:
+        games = f.readlines()
+        titles = [title.split('\t')[0] for title in games]
+        for prop in games:
+            if title in prop:
+                p = prop
+                p = p.replace('\t', ', ')
+                p = p.replace('\n', '')
+                properties.append(p)
+                return(properties)
+                
