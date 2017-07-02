@@ -62,7 +62,7 @@ def get_game(filename, title):
                 p = p.replace('\t', ', ')
                 p = p.replace('\n', '')
                 properties.append(p)
-                return(properties)
+                return properties
 
 
 def count_grouped_by_genre(filename):
