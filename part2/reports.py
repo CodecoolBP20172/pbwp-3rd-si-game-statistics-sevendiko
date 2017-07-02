@@ -1,4 +1,5 @@
 import math as m
+from collections import Counter
 
 
 def get_most_played(filename):
@@ -62,4 +63,11 @@ def get_game(filename, title):
                 p = p.replace('\n', '')
                 properties.append(p)
                 return(properties)
-                
+
+
+def count_grouped_by_genre(filename):
+    with open(filename) as f:
+        games = f.readlines()
+        genres = [genre.split('\t')[3] for genre in games]
+        result = Counter(genres)
+        return result
